@@ -44,12 +44,14 @@ public class Main {
      * @return
      */
     public ListNode method2(ListNode head){
+        if (head == null) { return null; }
         ListNode cure = head;
 
         while (head.next != null){
+            ListNode next = head.next.next;
             head.next.next = cure;
             cure = head.next;
-            head.next = cure.next;
+            head.next = next;
         }
         return cure;
     }
