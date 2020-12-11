@@ -11,13 +11,10 @@ import lombok.NoArgsConstructor;
  * @PackageName icu.yezi.dataStructure.tree.l普通的树
  * @Data 2020/12/10 星期四 20:53
  */
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class TreeNode {
-    private Integer val;
-    private TreeNode left;
-    private TreeNode right;
+    public Integer val;
+    public TreeNode left;
+    public TreeNode right;
 
 
     public TreeNode(Integer val) {

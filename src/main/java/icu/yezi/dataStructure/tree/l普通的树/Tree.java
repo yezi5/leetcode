@@ -21,6 +21,8 @@ public class Tree {
     public static void main(String[] args) {
         TreeNode root = initTree();
 
+        midTraversal(root);
+
     }
 
     public static TreeNode initTree(){
@@ -30,10 +32,10 @@ public class Tree {
         TreeNode node4 = new TreeNode(4);
         TreeNode node5 = new TreeNode(5);
 
-        root.setLeft(node2);
-        root.setRight(node3);
-        node3.setLeft(node5);
-        node3.setRight(node4);
+        root.left = node2;
+        root.right = node3;
+        node3.left = node5;
+        node3.right = node4;
 
         return root;
     }
@@ -45,13 +47,13 @@ public class Tree {
      */
     public static void preTraversal(TreeNode node){
         if (node==null){return;}
-        System.out.println(node.getVal());
+        System.out.println(node.val);
 
-        if (node.getLeft() != null){
-            preTraversal(node.getLeft());
+        if (node.left != null){
+            preTraversal(node.left);
         }
-        if (node.getRight() != null){
-            preTraversal(node.getRight());
+        if (node.right != null){
+            preTraversal(node.right);
         }
     }
 
@@ -67,12 +69,12 @@ public class Tree {
 
         while (!stack.isEmpty()){
             temp = stack.pop();
-            System.out.println(temp.getVal());
-            if (temp.getRight()!=null){
-                stack.push(temp.getRight());
+            System.out.println(temp.val);
+            if (temp.right!=null){
+                stack.push(temp.right);
             }
-            if (temp.getLeft()!=null){
-                stack.push(temp.getLeft());
+            if (temp.left!=null){
+                stack.push(temp.left);
             }
         }
 
@@ -84,12 +86,38 @@ public class Tree {
      */
     public static void midTraversal(TreeNode node){
         if (node==null){return;}
-        if (node.getLeft() != null){
-            preTraversal(node.getLeft());
+        if (node.left != null){
+            midTraversal(node.left);
         }
-        System.out.println(node.getVal());
-        if (node.getRight() != null){
-            preTraversal(node.getRight());
+        System.out.println(node.val);
+        if (node.right != null){
+            midTraversal(node.right);
+        }
+    }
+
+    /**
+     * 迭代实现中序遍历
+     * @param root
+     */
+    public static void mid(TreeNode root){
+        if (root==null){return;}
+        TreeNode cure = root;
+        Stack<TreeNode> stack = new Stack<>();
+        
+        while (cure!=null||!stack.isEmpty()){
+            //将左子树左子结点全部入栈
+            if (cure!=null){
+                stack.push(cure);
+                cure=cure.left;
+            }else { //左子结点全部入栈
+                TreeNode node = stack.pop();
+                System.out.println(node.val);
+
+                //遍历右子树
+                //如果右子树为空，继续向上打印左子树
+                //如果右子树不为空，继续入栈右子树的左子树结点
+                cure = node.right;
+            }
         }
     }
 
@@ -99,12 +127,12 @@ public class Tree {
      */
     public static void postTraversal(TreeNode node){
         if (node==null){return;}
-        if (node.getLeft() != null){
-            preTraversal(node.getLeft());
+        if (node.left != null){
+            postTraversal(node.left);
         }
-        if (node.getRight() != null){
-            preTraversal(node.getRight());
+        if (node.right != null){
+            postTraversal(node.right);
         }
-        System.out.println(node.getVal());
+        System.out.println(node.val);
     }
 }
