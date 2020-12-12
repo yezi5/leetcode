@@ -5,10 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * 一点思考：
@@ -30,6 +27,7 @@ import java.util.Stack;
 public class Tree {
     
     private TreeNode root;
+
 
     /**
      * 初始化树
@@ -163,6 +161,41 @@ public class Tree {
                 stack.pop();
             }
         }
+    }
+
+    /**
+     * BFS算法实现层序遍历
+     * 使用队列
+     * @param root
+     */
+    public void sequenceTraversal(TreeNode root){
+        if (root==null){return;}
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+
+        while (!queue.isEmpty()){
+            TreeNode cure = queue.poll();
+            System.out.printf("%d ",cure.val);
+            if (cure.left!=null){
+                queue.add(cure.left);
+            }
+            if (cure.right!=null){
+                queue.add(cure.right);
+            }
+        }
+
+        /*while (!queue.isEmpty()){
+            for (int i = queue.size(); i > 0; i--) {
+                TreeNode cure = queue.poll();
+                System.out.printf("%d ",cure.val);
+                if (cure.left!=null){
+                    queue.add(cure.left);
+                }
+                if (cure.right!=null){
+                    queue.add(cure.right);
+                }
+            }
+        }*/
     }
 
 }
