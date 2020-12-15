@@ -24,10 +24,15 @@ import java.util.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Tree {
+public class 树的遍历 {
     
     private TreeNode root;
 
+    public static void main(String[] args) {
+        TreeNode node = initTree();
+        树的遍历 s = new 树的遍历();
+        s.post(node);
+    }
 
     /**
      * 初始化树
@@ -117,8 +122,10 @@ public class Tree {
                 stack.push(cure);
                 cure=cure.left;
             }
+            //打印中间结点
             TreeNode temp = stack.pop();
             System.out.println(temp.val);
+            //处理右子树结点
             cure=temp.right;
         }
     }
