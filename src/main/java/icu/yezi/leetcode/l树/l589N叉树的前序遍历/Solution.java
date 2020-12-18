@@ -16,7 +16,9 @@ public class Solution {
 
     public List<Integer> preorder(Node root) {
         List<Integer> res = new ArrayList<>();
-
+        if (root!=null){
+            res.add(root.val);
+        }
         traverse(root,res);
 
         return res;
