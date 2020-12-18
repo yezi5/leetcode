@@ -1,6 +1,5 @@
 package icu.yezi.dataStructure.tree.l普通的树;
 
-import icu.yezi.leetcode.l树.l94二叉树的中序遍历.Solution;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,13 +23,13 @@ import java.util.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class 树的遍历 {
+public class 二叉树的遍历 {
     
     private TreeNode root;
 
     public static void main(String[] args) {
         TreeNode node = initTree();
-        树的遍历 s = new 树的遍历();
+        二叉树的遍历 s = new 二叉树的遍历();
         s.post(node);
     }
 
