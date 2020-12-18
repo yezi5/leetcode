@@ -13,14 +13,27 @@ import java.util.Stack;
  */
 public class Solution {
 
+
     public List<Integer> preorder(Node root) {
+        List<Integer> res = new ArrayList<>();
 
+        traverse(root,res);
 
-
-        return method2(root);
+        return res;
     }
 
-
+    /**
+     * 递归实现
+     * @param node
+     * @param list
+     */
+    public void traverse(Node node,List<Integer> list){
+        if (node==null){return;}
+        for (Node child : node.children) {
+            list.add(child.val);
+            traverse(child,list);
+        }
+    }
 
     /**
      * 套用迭代实现树的前序遍历算法的思想
@@ -28,7 +41,7 @@ public class Solution {
      * @param root
      * @return
      */
-    public List<Integer> method2(Node root){
+    public List<Integer> method1(Node root){
         List<Integer> list = new ArrayList<>();
         Stack<Node> stack = new Stack<>();
         if (root!=null){
