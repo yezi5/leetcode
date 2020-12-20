@@ -10,11 +10,7 @@
 
     <dependencies>
 
-        <dependency>
-            <groupId>com.walterjwhite.java.dependencies</groupId>
-            <artifactId>lombok</artifactId>
-            <version>0.0.17</version>
-        </dependency>
+
 
     </dependencies>
 
