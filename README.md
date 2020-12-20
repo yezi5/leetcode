@@ -3,21 +3,7 @@
 
 > 力扣刷题笔记
 
-# 项目结构
 
-|-- src
-
-​	|--main
-
-​		|--java
-
-			|--icu
-			
-				|--yezi
-				
-					|--dataStructure 基本数据结构相关操作总结
-					
-					|--leetcode 	 力扣刷题笔记
 
 ## 版本历史
 
