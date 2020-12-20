@@ -110,6 +110,6 @@ public class L基础操作 {
         if (min!=null && root.val<=min.val){return false;}
         if (max!=null && root.val>=max.val){return false;}
 
-        return isValidBST(root.left,null,root) && isValidBST(root.right,root,null);
+        return isValidBST(root.left,min,root) && isValidBST(root.right,root,max);
     }
 }
