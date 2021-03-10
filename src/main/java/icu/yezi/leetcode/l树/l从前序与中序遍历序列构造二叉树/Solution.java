@@ -1,48 +1,18 @@
-package icu.yezi.dataStructure.tree.l普通的树;
+package icu.yezi.leetcode.l树.l从前序与中序遍历序列构造二叉树;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * @author 叶子
- * @Description 请设置
- * @PackageName icu.yezi.dataStructure.tree.l普通的树
+ * @Description https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/
+ * @PackageName icu.yezi.leetcode.l树.l从前序与中序遍历序列构造二叉树
  * @DevelopmentTools IntelliJ IDEA
- * @Data 2021/3/5 星期五 19:40
+ * @Data 2021/3/8 星期一 19:56
  */
-public class 基础算法 {
+public class Solution {
 
     /**
-     * 计算树的最大深度
-     * @param root
-     * @return
-     */
-    public int depth(TreeNode root){
-        if (root == null) return 0;
-        return Math.max(depth(root.left),depth(root.right)) + 1;
-    }
-
-    /**
-     * 二叉树最近公共祖先
-     * @param root
-     * @param p
-     * @param q
-     * @return
-     */
-    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        if(root == null || root == p || root == q) return root;
-
-        TreeNode left = lowestCommonAncestor(root.left,p,q);
-        TreeNode right = lowestCommonAncestor(root.right,p,q);
-        if(left == null) return right;
-        if(right == null) return left;
-
-        return root;
-    }
-
-    /**
-     * 从前序遍历结果+中序遍历结果还原二叉树
-     *
      * 首先，需要了解前序遍历和中序遍历的特点：
      *
      * 前序遍历：首次访问的必定是根结点
@@ -59,7 +29,7 @@ public class 基础算法 {
      * 继续分析前、中后序遍历结果
      *  我们知道中序遍历结果中根结点左侧即为左子树中序遍历结果 --> 可以得到左子树结点个数 leftNumLength
      *  左子树
-     *      前序遍历起始索引：（前序start+1，前序start+leftNumLength） 
+     *      前序遍历起始索引：（前序start+1，前序start+leftNumLength）
      *      中序遍历起始索引：（后序start，后序中root索引-1）
      * 右子树同理分析
      *
@@ -77,7 +47,7 @@ public class 基础算法 {
     }
 
     public TreeNode helper(int[] preorder, int preStart, int preEnd,
-                                                                 int[] inorder, int inStart, int inEnd, Map<Integer,Integer> map){
+                              int[] inorder, int inStart, int inEnd,Map<Integer,Integer> map){
 
         if (preStart>preEnd || inStart>inEnd) return null;
 
@@ -89,5 +59,19 @@ public class 基础算法 {
         root.right = helper(preorder,preStart+leftNumLength+1,preEnd,inorder,rootIndex+1,inEnd,map);
 
         return root;
+    }
+}
+
+
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+    TreeNode() {}
+    TreeNode(int val) { this.val = val; }
+    TreeNode(int val, TreeNode left, TreeNode right) {
+        this.val = val;
+        this.left = left;
+        this.right = right;
     }
 }
