@@ -1,5 +1,6 @@
 package icu.yezi.leetcode.dp.dp凑零钱;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,5 +34,46 @@ public class Solution {
 
         memo.put(amount,res==Integer.MAX_VALUE?-1:res);
         return memo.get(amount);
+    }
+
+    /**
+     * 迭代写法
+     *
+     * 1. 初始状态
+     * 2. dp数组含义
+     * 2. 状态转移方程
+     *
+     * 初始状态：
+     *      dp[0] = 0 ， 0元需要0个硬币
+     * dp[i]含义：
+     *      凑齐i元，需要dp[i]枚硬币
+     * 状态转移方程：
+     *
+     *      dp[i] = Math.min(dp[i],dp[i-coin]+1);
+     *
+     * dp[i-coin]+1 (i-coin)元所需最少硬币+1
+     *
+     * @param coins
+     * @param amount
+     * @return
+     */
+    public int coinChange2(int[] coins, int amount){
+        int[] dp = new int[amount+1];
+        Arrays.fill(dp,amount+1);
+
+        // base case
+        dp[0] = 0;
+
+        // 遍历所有状态
+        for (int i = 0; i < (amount + 1); i++) {
+            // 遍历所有选择，求取最小值
+            for (int coin : coins) {
+                // 子问题无解，跳过
+                if (i < coin) continue;
+                dp[i] = Math.min(dp[i],dp[i-coin]+1);
+            }
+        }
+
+        return (dp[amount]==amount+1)?-1:dp[amount];
     }
 }
